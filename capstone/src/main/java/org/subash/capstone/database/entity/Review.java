@@ -20,13 +20,21 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reviewId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional =true)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id", nullable = false)
+    @Column(name="user_id",insertable = false, updatable = false)
+    private Integer userId;
+
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional =true)
+    @JoinColumn(name = "book_id")
     private Book book;
+
+    @Column(name="book_id",insertable = false, updatable = false)
+    private Integer bookId;
 
     @Column(name = "rating", nullable = false)
     private Integer rating;

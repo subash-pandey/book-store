@@ -18,13 +18,21 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderDetailId;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional =true)
+    @JoinColumn(name = "order_id", nullable = true)
     private Order order;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id", nullable = false)
+    @Column(name = "order_id",insertable = false, updatable = false)
+    private Integer orderId;
+
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional =true)
+    @JoinColumn(name = "book_id", nullable = true)
     private Book book;
+
+    @Column(name = "order_id",insertable = false, updatable = false)
+    private Integer bookId;
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;

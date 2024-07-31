@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Setter
@@ -16,13 +17,23 @@ import java.util.Date;
 @Table(name = "orders")
 public class Order {
 
+    @ToString.Exclude
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<OrderDetail> orderDetails;
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional =true)
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
+
+    @Column(name ="user_id",insertable = false,updatable = false)
+    private Integer userId;
+
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "order_date", nullable = false)
@@ -53,6 +64,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
+
     public enum OrderStatus {
         PENDING,
         PROCESSING,
@@ -60,4 +72,12 @@ public class Order {
         DELIVERED,
         CANCELLED
     }
+    @ManyToMany
+    @JoinTable(
+            name = "order_details",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private List<Book> books;
+
 }

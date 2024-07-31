@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Setter
@@ -16,6 +17,11 @@ import java.util.Date;
 @AllArgsConstructor
 @Table(name ="books")
 public class Book {
+
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Review> reviews;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +54,9 @@ public class Book {
     @Temporal(TemporalType.DATE)
     @Column(name ="published_date")
     private Date publishedDate;
+
+    @ManyToMany(mappedBy = "books")
+    private List<Order> orders;
 
 
 }

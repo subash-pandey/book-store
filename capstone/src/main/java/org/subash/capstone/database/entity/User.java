@@ -5,6 +5,8 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.usertype.UserType;
 
+import java.util.List;
+
 @Entity
 @Setter
 @Getter
@@ -14,6 +16,11 @@ import org.hibernate.usertype.UserType;
 @AllArgsConstructor
 @Table(name = "users")
 public class User {
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Review> reviews;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
