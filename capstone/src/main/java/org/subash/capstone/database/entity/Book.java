@@ -55,6 +55,9 @@ public class Book {
     @Column(name ="published_date")
     private Date publishedDate;
 
+    @Column(name ="picture_url")
+    private String pictureURL;
+
     @ManyToMany(mappedBy = "books")
     private List<Order> orders;
 

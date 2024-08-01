@@ -60,18 +60,11 @@ public class Order {
     @Column(name = "shipping_country", nullable = false)
     private String shippingCountry;
 
-    @Column(name = "order_status", nullable = false, columnDefinition = "ENUM('pending', 'processing', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending'")
-    @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
+    @Column(name = "order_status", nullable = false)
+    private String orderStatus;
 
 
-    public enum OrderStatus {
-        PENDING,
-        PROCESSING,
-        SHIPPED,
-        DELIVERED,
-        CANCELLED
-    }
+
     @ManyToMany
     @JoinTable(
             name = "order_details",
