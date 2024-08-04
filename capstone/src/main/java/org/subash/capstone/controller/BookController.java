@@ -1,9 +1,11 @@
 package org.subash.capstone.controller;
 
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -74,40 +76,52 @@ public class BookController {
     }
 
     @PostMapping("/submit")
-    public ModelAndView submit(CreateBookFormBean form, @RequestParam MultipartFile image) {
-        ModelAndView response  = new ModelAndView();
-        Book book = bookDAO.findBookByBookId(form.getBookId());
-        if(book==null){
-            book = new Book();
+    public ModelAndView submit(@Valid CreateBookFormBean form, BindingResult bindingResult) {
+        ModelAndView response = new ModelAndView();
+        if (form.getBookId() == null) {
+            Book book = bookDAO.findBookByIsbn(form.getIsbn());
+            if (book != null) {
+                bindingResult.rejectValue("isbn", "isbn-error", "ISBN already exists");
+            }
         }
 
-        book.setTitle(form.getTitle());
-        book.setAuthor(form.getAuthor());
-        book.setGenre(form.getGenre());
-        book.setDescription(form.getDescription());
-        book.setPrice(form.getPrice());
-        book.setStock(form.getStock());
-        book.setIsbn(form.getIsbn());
-        book.setPublisher(form.getPublisher());
-        book.setPublishedDate(form.getPublishedDate());
-        String saveFilename = "./src/main/webapp/pub/images/" + image.getOriginalFilename();
+        if (bindingResult.hasErrors()) {
+            response.addObject("bindingResult", bindingResult);
+            response.addObject("form", form);
+            response.setViewName("book/create");
+            return response;
+        } else {
+            Book book = bookDAO.findBookByBookId(form.getBookId());
+            if (book == null) {
+                book = new Book();
+            }
 
+            book.setTitle(form.getTitle());
+            book.setAuthor(form.getAuthor());
+            book.setGenre(form.getGenre());
+            book.setDescription(form.getDescription());
+            book.setPrice(form.getPrice());
+            book.setStock(form.getStock());
+            book.setIsbn(form.getIsbn());
+            book.setPublisher(form.getPublisher());
+            book.setPublishedDate(form.getPublishedDate());
+            String saveFilename = "./src/main/webapp/pub/images/" + form.getImage().getOriginalFilename();
 
-        try {
-            Files.copy(image.getInputStream(), Paths.get(saveFilename), StandardCopyOption.REPLACE_EXISTING);
-        } catch ( Exception e ) {
-            log.error("Unable to finish reading image", e);
+            try {
+                Files.copy(form.getImage().getInputStream(), Paths.get(saveFilename), StandardCopyOption.REPLACE_EXISTING);
+            } catch (Exception e) {
+                log.error("Unable to finish reading image", e);
+            }
+
+            String url = "/pub/images/" + form.getImage().getOriginalFilename();
+            book.setPictureURL(url);
+
+            book = bookDAO.save(book);
+
+            response.setViewName("redirect:/book/index/" + book.getBookId());
+            return response;
         }
-        // we can load the record from the database based on the incoming employeeId
 
-        // this is the URL to get the image
-         String url = "/pub/images/" + image.getOriginalFilename();
-       book.setPictureURL(url);
-
-        book = bookDAO.save(book);
-
-        response.setViewName("redirect:/user/index/" + book.getBookId());
-        return response;
     }
 
 }

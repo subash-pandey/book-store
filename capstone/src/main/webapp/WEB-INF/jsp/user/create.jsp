@@ -23,27 +23,56 @@
 
                     <div class="col-md-6">
                         <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="FirstName" name="FirstName" value="${form.firstName}" >
+                        <input type="text" class="form-control" id="FirstName" name="FirstName"
+                               value="${form.firstName}">
                     </div>
                     <div class="col-md-6">
                         <label for="lastName" class="form-label">Last Name</label>
                         <input type="text" class="form-control" id="lastName" name="lastName" value="${form.lastName}">
                     </div>
-                    <div class="col-md-6">
-                        <label for="email" class="form-label">email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="${form.email}">
+                    <div class="col-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" value="${form.email}" class="form-control
+                            <c:if test ="${bindingResult.hasFieldErrors('email')}">is-invalid</c:if>">
                     </div>
-                    <div class="col-md-6">
+                    <c:if test="${bindingResult.hasFieldErrors('email')}">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="offset-2 col-4">
+                                <div class="text-danger">
+                                    <c:forEach items="${bindingResult.getFieldErrors('email')}" var="error">
+                                        ${error.defaultMessage}<br>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+
+                    </c:if>
+                    <div class="col-12">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" >
+                        <input type="password"  id="password" name="password" class="form-control
+                          <c:if test ="${bindingResult.hasFieldErrors('password')}">is-invalid</c:if>">
                     </div>
+                    <c:if test="${bindingResult.hasFieldErrors('password')}">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="offset-2 col-12">
+                                <div class="text-danger">
+                                    <c:forEach items="${bindingResult.getFieldErrors('password')}" var="error">
+                                        ${error.defaultMessage}<br>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+
+                    </c:if>
                     <div class="col-12">
                         <label for="addressLine1" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="addressLine1" name="addressLine1" placeholder="1234 Main St" value="${form.addressLine1}">
+                        <input type="text" class="form-control" id="addressLine1" name="addressLine1"
+                               placeholder="1234 Main St" value="${form.addressLine1}">
                     </div>
                     <div class="col-12">
                         <label for="addressLine2" class="form-label">Address 2</label>
-                        <input type="text" class="form-control" id="addressLine2" name="addressLine2" placeholder="Apartment, studio, or floor" value="${form.addressLine2}">
+                        <input type="text" class="form-control" id="addressLine2" name="addressLine2"
+                               placeholder="Apartment, studio, or floor" value="${form.addressLine2}">
                     </div>
                     <div class="col-md-4">
                         <label for="city" class="form-label">City</label>

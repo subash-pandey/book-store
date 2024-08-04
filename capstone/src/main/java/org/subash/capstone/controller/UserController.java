@@ -1,8 +1,10 @@
 package org.subash.capstone.controller;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,9 +76,27 @@ public class UserController {
     }
 
     @GetMapping("/submit")
-    public ModelAndView submit(CreateUserFormBean form) {
+    public ModelAndView submit(@Valid CreateUserFormBean form, BindingResult bindingResult) {
         ModelAndView response  = new ModelAndView();
-        User user = new User();
+
+        if(form.getUserId() == null ) {
+          User user =userDAO.findUserByEmailIgnoreCase(form.getEmail());
+            if (user != null) {
+                bindingResult.rejectValue("email", "error.email.exists", "Email already exists");
+            }
+        }
+        if (bindingResult.hasErrors()) {
+            response.addObject("bindingResult", bindingResult);
+            response.addObject("form", form);
+            response.setViewName("user/create");
+        }
+        else{
+        User user;
+        if (form.getUserId() != null) {
+            user = userDAO.findUserByUserId(form.getUserId());
+        }else{
+            user = new User();
+        }
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
         user.setEmail(form.getEmail());
@@ -92,6 +112,7 @@ public class UserController {
 
         user = userDAO.save(user);
         response.setViewName("redirect:/user/index/" + user.getUserId());
+        }
         return response;
     }
 

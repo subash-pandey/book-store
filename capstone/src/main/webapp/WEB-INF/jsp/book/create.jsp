@@ -23,11 +23,11 @@
 
                     <div class="col-md-6">
                         <label for="title" class="form-label">Title of the book</label>
-                        <input type="text" class="form-control" id="title" name="title" value="${form.title}" >
+                        <input type="text" class="form-control" id="title" name="title" value="${form.title}">
                     </div>
                     <div class="col-md-6">
                         <label for="author" class="form-label">Author</label>
-                        <input type="text" class="form-control" id="Author" name="author" value="${form.author}">
+                        <input type="text" class="form-control" id="author" name="author" value="${form.author}">
                     </div>
                     <div class="col-md-6">
                         <label for="genre" class="form-label">Genre</label>
@@ -37,18 +37,30 @@
                         <label for="price" class="form-label">Price</label>
                         <input type="text" class="form-control" id="price" name="price" value="${form.price}">
                     </div>
-                   <div class="col-md-6">
-                        <label for="stock" class="form-label">Number of books in stock</label>
-                        <input type="text" class="form-control" id="stock" name="stock"  value="${form.stock}">
-                    </div>
                     <div class="col-md-6">
-                        <label for="isbn" class="form-label">ISBN </label>
-                        <input type="text" class="form-control" id="isbn" name="isbn"  value="${form.isbn}">
+                        <label for="stock" class="form-label">Number of books in stock</label>
+                        <input type="text" class="form-control" id="stock" name="stock" value="${form.stock}">
                     </div>
                     <div class="col-12">
+                        <label for="isbn" class="form-label">ISBN</label>
+                        <input type="text" id="isbn" name="isbn" value="${form.isbn}"
+                               class="form-control <c:if test ="${bindingResult.hasFieldErrors('isbn')}">is-invalid</c:if>">
+                    </div>
+                    <c:if test="${bindingResult.hasFieldErrors('isbn')}">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="offset-2 col-12">
+                                <div class="text-danger">
+                                    <c:forEach items="${bindingResult.getFieldErrors('isbn')}" var="error">
+                                        ${error.defaultMessage}<br>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
+
+                    <div class="col-12">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="3"> ${form.description}
-                        </textarea>
+                        <textarea class="form-control" id="description" name="description" rows="3">${form.description}</textarea>
                     </div>
                     <div class="col-md-6">
                         <label for="publisher" class="form-label">Publisher</label>
@@ -61,7 +73,7 @@
                     </div>
                     <div class="col-12">
                         <label for="image" class="form-label">Upload image of the book</label>
-                        <input type="file" class="form-control" id="image" name="image" >
+                        <input type="file" class="form-control" id="image" name="image">
                     </div>
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">Submit</button>
