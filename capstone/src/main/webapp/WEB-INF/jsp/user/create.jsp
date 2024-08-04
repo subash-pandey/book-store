@@ -4,11 +4,11 @@
 <section style="background-color:gray">
     <div class="container">
         <div class="row pt-5 pb-5">
-            <c:if test="${empty form.customerId}">
-                <h1 class="text-center">Create Customer</h1>
+            <c:if test="${empty form.userId}">
+                <h1 class="text-center">Create User</h1>
             </c:if>
-            <c:if test="${not empty form.customerId}">
-                <h1 class="text-center">Edit Customer</h1>
+            <c:if test="${not empty form.userId}">
+                <h1 class="text-center">Edit User</h1>
             </c:if>
         </div>
     </div>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" value="${form.email}">
+                        <input type="password" class="form-control" id="password" name="password" >
                     </div>
                     <div class="col-12">
                         <label for="addressLine1" class="form-label">Address</label>
