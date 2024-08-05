@@ -15,7 +15,7 @@ import org.subash.capstone.security.AuthenticatedUserUtilities;
 @Controller
 @Slf4j
 @RequestMapping("/admin")
-@PreAuthorize("hasAnyAuthority('ADMIN')")
+@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 public class AdminController {
 
     @Autowired
