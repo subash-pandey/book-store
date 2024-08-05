@@ -3,6 +3,7 @@ package org.subash.capstone.controller;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,9 @@ public class UserController {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/index/{id}")
     public ModelAndView indexPathVar(@PathVariable Integer id) {
@@ -100,7 +104,7 @@ public class UserController {
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
         user.setEmail(form.getEmail());
-        user.setPassword(form.getPassword());
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
         user.setAddressLine1(form.getAddressLine1());
         user.setAddressLine2(form.getAddressLine2());
         user.setCity(form.getCity());
@@ -108,9 +112,13 @@ public class UserController {
         user.setZipCode(form.getZipCode());
         user.setCountry(form.getCountry());
         user.setPhone(form.getPhone());
+        user.setRole("ROLE_CUSTOMER");
+
+
 
 
         user = userDAO.save(user);
+
         response.setViewName("redirect:/user/index/" + user.getUserId());
         }
         return response;
