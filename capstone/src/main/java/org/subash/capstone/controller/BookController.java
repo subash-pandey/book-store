@@ -123,5 +123,15 @@ public class BookController {
         }
 
     }
+    @GetMapping("/search")
+    public ModelAndView employeeSearch(@RequestParam(required = false) String bookSearch) {
+
+        ModelAndView response = new ModelAndView("book/search");
+
+        response.addObject("bookSearch", bookSearch);
+        List<Book> books = bookDAO.searchBooks(bookSearch);
+        response.addObject("books",books);
+        return response;
+    }
 
 }
