@@ -124,7 +124,7 @@ public class BookController {
 
     }
     @GetMapping("/search")
-    public ModelAndView employeeSearch(@RequestParam(required = false) String bookSearch) {
+    public ModelAndView bookSearch(@RequestParam(required = false) String bookSearch) {
 
         ModelAndView response = new ModelAndView("book/search");
 
