@@ -25,11 +25,10 @@ public class SpringSecurity {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeRequests()
-                .requestMatchers(
-                        new AntPathRequestMatcher("/admin/**"),
-                        new AntPathRequestMatcher("/order/**")).authenticated()
-                .anyRequest().permitAll();
-               http.formLogin(formLogin -> formLogin
+                .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ADMIN")
+                .anyRequest().permitAll()
+                .and()
+                .formLogin(formLogin -> formLogin
                         .loginPage("/user/login")
                         .loginProcessingUrl("/user/loginPost")
                         .permitAll()

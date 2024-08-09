@@ -4,7 +4,7 @@
 <section style="background-color: white">
     <div class="container">
         <div class="row pt-5 pb-5">
-            <h2 class="text-center">Book Detail</h2>
+            <h2 class="text-center">Add to Cart</h2>
         </div>
         <div class="row pt-3">
             <div class="col-12">
@@ -23,11 +23,9 @@
                                     <form action="/cart/add/${book.bookId}" method="get">
                                         <div class="form-group">
                                             <label for="quantity">Quantity:</label>
-                                            <input style="width:80px" type="number" id="quantity" name="quantity" class="form-control" max="${book.stock}" min="0" value="1">
+                                            <input type="number" id="quantity" name="quantity" class="form-control" min="1" value="1">
                                         </div>
-
-                                        <button type="submit" class="btn btn-primary mt-3"
-                                                <c:if test="${book.stock <= 0}">disabled</c:if>>Add to Cart</button>
+                                        <button type="submit" class="btn btn-primary mt-3">Add to Cart</button>
                                     </form>
                                 </div>
                             </div>
@@ -52,24 +50,3 @@
         object-fit: cover;
     }
 </style>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const quantityInput = document.getElementById('quantity');
-        const addToCartButton = document.getElementById('addToCartButton');
-
-        // Function to enable or disable the button based on the quantity value
-        function toggleAddToCartButton() {
-            if (quantityInput.value <= 0) {
-                addToCartButton.disabled = true;
-            } else {
-                addToCartButton.disabled = false;
-            }
-        }
-
-        // Initialize the button state when the page loads
-        toggleAddToCartButton();
-
-        // Add event listener to monitor changes in the quantity input field
-        quantityInput.addEventListener('input', toggleAddToCartButton);
-    });
-</script>

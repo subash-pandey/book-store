@@ -22,7 +22,7 @@
                 </tr>
                 <c:forEach items="${books}" var="book">
                     <tr>
-                        <td><a href ="/user/index/${book.bookId}">${book.bookId}</a></td>
+                        <td><a href ="/book/index/${book.bookId}">${book.bookId}</a></td>
                         <td><img class="uniform-size" src = "${book.pictureURL}"/></td>
                         <td>${book.title}</td>
                         <td>${book.author}</td>
