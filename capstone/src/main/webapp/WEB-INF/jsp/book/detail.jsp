@@ -26,7 +26,7 @@
                                             <input style="width:80px" type="number" id="quantity" name="quantity" class="form-control" max="${book.stock}" min="0" value="1">
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary mt-3"
+                                        <button id="addToCartButton" type="submit" class="btn btn-primary mt-3"
                                                 <c:if test="${book.stock <= 0}">disabled</c:if>>Add to Cart</button>
                                     </form>
                                 </div>

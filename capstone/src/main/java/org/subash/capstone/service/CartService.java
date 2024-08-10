@@ -2,6 +2,7 @@ package org.subash.capstone.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.subash.capstone.database.dao.BookDAO;
 import org.subash.capstone.database.dao.OrderDAO;
@@ -31,8 +32,13 @@ public class CartService {
     @Autowired
     private AuthenticatedUserUtilities authenticatedUserUtilities;
 
+
+
+
+    @PreAuthorize("isAuthenticated()")
     public OrderDetail getOrderDetail(Integer bookId, Integer quantity) {
         User currentUser = authenticatedUserUtilities.getCurrentUser();
+
 
         Order cart = orderDAO.findByOrderStatusAndUser("PENDING", currentUser);
         if (cart == null) {
@@ -61,7 +67,7 @@ public class CartService {
         return orderDetail;
     }
 
-    public void removeBookOrder(Integer bookId, Integer quantity) {
+    public void removeBookOrder(Integer bookId) {
         User currentUser = authenticatedUserUtilities.getCurrentUser();
         if (currentUser == null) {
             throw new RuntimeException("User not logged in");
@@ -77,14 +83,12 @@ public class CartService {
         OrderDetail orderDetail = orderDetailDAO.findByOrderAndBook(order, book);
         if (orderDetail == null) {
             throw new RuntimeException("Order detail not found");
-        }
-        orderDetail.setQuantity(orderDetail.getQuantity() - quantity);
-        if (orderDetail.getQuantity() <= 0) {
-            orderDetailDAO.delete(orderDetail);
         } else {
-            orderDetailDAO.save(orderDetail);
+
+            orderDetailDAO.delete(orderDetail);
         }
     }
+
 
     public List<OrderDetail> viewCart() {
         User currentUser = authenticatedUserUtilities.getCurrentUser();
@@ -98,6 +102,7 @@ public class CartService {
             cartOrder.setOrderStatus("PENDING");
             cartOrder.setUser(currentUser);
             cartOrder.setOrderDate(new Date());
+
             orderDAO.save(cartOrder);
         }
 

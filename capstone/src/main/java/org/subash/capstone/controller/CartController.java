@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.subash.capstone.database.dao.BookDAO;
 import org.subash.capstone.database.entity.Book;
 import org.subash.capstone.database.entity.OrderDetail;
+import org.subash.capstone.database.entity.User;
 import org.subash.capstone.form.CreateOrderDetailFormBean;
 import org.subash.capstone.form.CreateOrderFormBean;
 import org.subash.capstone.security.AuthenticatedUserUtilities;
@@ -37,7 +38,11 @@ public class CartController {
         ModelAndView response = new ModelAndView("cart/view");
         try {
             List<OrderDetail> orderDetails = cartService.viewCart();
+            double totalAmount = orderDetails.stream().mapToDouble(od -> od.getPrice() * od.getQuantity()).sum();
+            User user = authenticatedUserUtilities.getCurrentUser();
+            response.addObject("user", user);
             response.addObject("orderDetails", orderDetails);
+            response.addObject("totalAmount", totalAmount);
         } catch (RuntimeException e) {
             response.setViewName("redirect:/user/login");
         }
@@ -55,7 +60,7 @@ public class CartController {
 
         }
         catch(RuntimeException e){
-            response.setViewName("redirect:/book/list");
+            response.setViewName("redirect:/user/login");
         }
         return response;
 
@@ -63,12 +68,10 @@ public class CartController {
 
     @GetMapping("/remove/{bookId}")
     public ModelAndView removeBook(@PathVariable Integer bookId, CreateOrderDetailFormBean form)  {
-        ModelAndView response = new ModelAndView("cart/remove");
+        ModelAndView response = new ModelAndView("cart/view");
 
         try{
-            cartService.removeBookOrder(bookId,form.getQuantity());
-            Book book = bookDAO.findBookByBookId(bookId);
-            response.addObject("book", book);
+            cartService.removeBookOrder(bookId);
 
         }
         catch(RuntimeException e){
@@ -82,18 +85,18 @@ public class CartController {
         ModelAndView response = new ModelAndView("cart/checkout");
         try {
             List<OrderDetail> orderDetails = cartService.viewCart();
-            double totalAmount = orderDetails.stream().mapToDouble(od -> od.getPrice() * od.getQuantity()).sum();
+
             response.addObject("orderDetails", orderDetails);
-            response.addObject("totalAmount", totalAmount);
+
         } catch (RuntimeException e) {
             response.setViewName("redirect:/cart/view");
         }
         return response;
     }
 
-    @PostMapping("/checkout")
+    @PostMapping("/checkoutSuccess")
     public ModelAndView checkout(CreateOrderFormBean form) {
-        ModelAndView response = new ModelAndView("cart/checkoutSuccess");
+        ModelAndView response = new ModelAndView();
         try {
             cartService.checkout(form);
         } catch (RuntimeException e) {
