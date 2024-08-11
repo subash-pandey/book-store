@@ -78,10 +78,11 @@
                         <label for="city" class="form-label">City</label>
                         <input type="text" class="form-control" id="city" name="city" value="${form.city}">
                     </div>
-                    <div class="col-md-2">
-                        <label for="state" class="form-label">State</label>
-                        <input type="text" class="form-control" id="state" name="state" value="${form.state}">
-                    </div>
+                   <div class ="col-md-2">
+                       <label for ="state" class="form-label">State</label>
+                       <select id ="state" name="state" class ="form-control"></select>
+
+                   </div>
 
                     <div class="col-md-3">
                         <label for="zipCode" class="form-label">Zip Code</label>
@@ -106,3 +107,33 @@
 </section>
 
 <jsp:include page="../include/footer.jsp"></jsp:include>
+
+<script>
+   document.addEventListener("DOMContentLoaded",function () {
+
+       const states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
+           "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",
+           "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
+           "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
+           "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
+           "New Hampshire", "New Jersey", "New Mexico", "New York",
+           "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
+           "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+           "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
+           "West Virginia", "Wisconsin", "Wyoming"]
+       const stateSelect = document.getElementById("state");
+
+       states.forEach( state=>{
+           const option =document.createElement("option");
+           option.value =state;
+           option.text =state;
+           if(state ==="${form.state}"){
+               option.selected = true;
+           }
+           stateSelect.appendChild(option);
+
+       })
+
+
+   });
+</script>

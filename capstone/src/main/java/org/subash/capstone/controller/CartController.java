@@ -51,12 +51,12 @@ public class CartController {
 
     @GetMapping("/add/{bookId}")
     public ModelAndView addBook(@PathVariable Integer bookId, CreateOrderDetailFormBean form)  {
-        ModelAndView response = new ModelAndView("cart/add");
+        ModelAndView response = new ModelAndView();
 
         try{
             cartService.getOrderDetail(bookId,form.getQuantity());
-           Book book = bookDAO.findBookByBookId(bookId);
-            response.addObject("book", book);
+            response.setViewName("redirect:/cart/view");
+
 
         }
         catch(RuntimeException e){
@@ -68,15 +68,17 @@ public class CartController {
 
     @GetMapping("/remove/{bookId}")
     public ModelAndView removeBook(@PathVariable Integer bookId, CreateOrderDetailFormBean form)  {
-        ModelAndView response = new ModelAndView("cart/view");
+        ModelAndView response = new ModelAndView();
 
         try{
             cartService.removeBookOrder(bookId);
+            response.setViewName("redirect:/cart/view");
 
         }
         catch(RuntimeException e){
             response.setViewName("redirect:/book/list");
         }
+
         return response;
 
     }
@@ -99,9 +101,11 @@ public class CartController {
         ModelAndView response = new ModelAndView();
         try {
             cartService.checkout(form);
+
         } catch (RuntimeException e) {
             response.setViewName("redirect:/cart/view");
         }
+        response.setViewName("redirect:/cart/view");
         return response;
     }
 

@@ -23,7 +23,7 @@
                                     <form action="/cart/add/${book.bookId}" method="get">
                                         <div class="form-group">
                                             <label for="quantity">Quantity:</label>
-                                            <input style="width:80px" type="number" id="quantity" name="quantity" class="form-control" max="${book.stock}" min="0" value="1">
+                                            <input style="width:80px" type="number" id="quantity" name="quantity" class="form-control" max="${book.stock}" min="0" value="0">
                                         </div>
 
                                         <button id="addToCartButton" type="submit" class="btn btn-primary mt-3"
@@ -43,6 +43,10 @@
         </div>
     </div>
 </section>
+
+
+
+
 <jsp:include page="../include/footer.jsp"></jsp:include>
 
 <style>

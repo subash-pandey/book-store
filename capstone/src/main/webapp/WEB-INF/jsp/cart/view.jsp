@@ -73,30 +73,30 @@
         <div class="col-12 text-center">
             <form action="/cart/checkoutSuccess" method="post" class="row g-3">
                 <div class="col-md-6">
-                    <label for="addressLine1" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="addressLine1" name="addressLine1"
+                    <label for="addressLine1" class="form-label">Address Line 1</label>
+                    <input type="text" class="form-control" id="addressLine1" name="shippingAddressLine1"
                            placeholder="1234 Main St" value="${user.addressLine1}">
                 </div>
                 <div class="col-md-6">
-                    <label for="addressLine2" class="form-label">Address 2</label>
-                    <input type="text" class="form-control" id="addressLine2" name="addressLine2"
+                    <label for="addressLine2" class="form-label">Address Line 2</label>
+                    <input type="text" class="form-control" id="addressLine2" name="shippingAddressLine2"
                            placeholder="Apartment, studio, or floor" value="${user.addressLine2}">
                 </div>
                 <div class="col-md-6">
                     <label for="city" class="form-label">City</label>
-                    <input type="text" class="form-control" id="city" name="city" value="${user.city}">
+                    <input type="text" class="form-control" id="city" name="shippingCity" value="${user.city}">
                 </div>
                 <div class="col-md-2">
                     <label for="state" class="form-label">State</label>
-                    <input type="text" class="form-control" id="state" name="state" value="${user.state}">
+                    <input type="text" class="form-control" id="state" name="shippingState" value="${user.state}">
                 </div>
                 <div class="col-md-2">
                     <label for="zipCode" class="form-label">Zip Code</label>
-                    <input type="text" class="form-control" id="zipCode" name="zipCode" value="${user.zipCode}">
+                    <input type="text" class="form-control" id="zipCode" name="shippingZipCode" value="${user.zipCode}">
                 </div>
                 <div class="col-md-2">
                     <label for="country" class="form-label">Country</label>
-                    <input type="text" class="form-control" id="country" name="country" value="${user.country}">
+                    <input type="text" class="form-control" id="country" name="shippingCountry" value="${user.country}">
                 </div>
 
                 <div class="col-12 text-center pt-3">

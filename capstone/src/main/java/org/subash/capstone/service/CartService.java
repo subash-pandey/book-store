@@ -62,7 +62,10 @@ public class CartService {
             orderDetail.setQuantity(quantity);
         } else {
             orderDetail.setQuantity(orderDetail.getQuantity() + quantity);
+
         }
+        book.setStock(book.getStock() - quantity);
+        bookDAO.save(book);
         orderDetailDAO.save(orderDetail);
         return orderDetail;
     }
@@ -85,7 +88,10 @@ public class CartService {
             throw new RuntimeException("Order detail not found");
         } else {
 
+            book.setStock(book.getStock() + orderDetail.getQuantity());
+            bookDAO.save(book);
             orderDetailDAO.delete(orderDetail);
+
         }
     }
 
