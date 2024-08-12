@@ -88,11 +88,10 @@ public class UserController {
         return response;
     }
 
-    @GetMapping("/edit/{id}")
-    public ModelAndView edit(@PathVariable Integer id) {
+    @GetMapping("/profile/edit")
+    public ModelAndView edit() {
         ModelAndView response = new ModelAndView("user/create");
-        if (id != null) {
-           User user = userDAO.findUserByUserId(id);
+        User user = authenticatedUserUtilities.getCurrentUser();
             if (user != null) {
                 CreateUserFormBean form = new CreateUserFormBean();
                 form.setUserId(user.getUserId());
@@ -108,8 +107,9 @@ public class UserController {
                 form.setCountry(user.getCountry());
                 response.addObject("form", form);
 
+            } else{
+                response.setViewName("redirect:/user/login");
             }
-        }
 
         return response;
 

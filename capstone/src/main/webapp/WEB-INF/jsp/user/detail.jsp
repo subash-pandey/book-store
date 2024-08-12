@@ -22,10 +22,15 @@
                     <tr><th>Country</th><td>${user.country}</td></tr>
                     <tr><th>Phone</th><td>${user.phone}</td></tr>
                 </table>
+                <div class="text-center mt-4">
+                    <a href="/user/profile/edit" class="btn btn-primary">Edit Profile</a>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+
 
 <section style="padding: 20px; background-color: white;">
     <div class="container">
