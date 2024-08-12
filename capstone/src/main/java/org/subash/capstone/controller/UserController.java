@@ -3,6 +3,7 @@ package org.subash.capstone.controller;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -10,9 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.subash.capstone.database.dao.OrderDAO;
 import org.subash.capstone.database.dao.UserDAO;
+import org.subash.capstone.database.entity.Order;
 import org.subash.capstone.database.entity.User;
 import org.subash.capstone.form.CreateUserFormBean;
+import org.subash.capstone.security.AuthenticatedUserUtilities;
 
 import java.util.List;
 
@@ -26,17 +30,50 @@ public class UserController {
     private UserDAO userDAO;
 
     @Autowired
+    AuthenticatedUserUtilities authenticatedUserUtilities;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping("/index/{id}")
-    public ModelAndView indexPathVar(@PathVariable Integer id) {
+    @Autowired
+    private OrderDAO orderDAO;
+
+    @GetMapping("/profile")
+    public ModelAndView profileView() {
         ModelAndView response = new ModelAndView("user/detail");
-       User user  = userDAO.findUserByUserId(id);
-        response.addObject("user", user );
+       User user  =  authenticatedUserUtilities.getCurrentUser();
+       if (user == null) {
+           response.setViewName("redirect:/user/login");
+       }else {
+
+           List<Order> orders = orderDAO.findOrdersByUserAndCheckoutStatus(user);
+           response.addObject("user", user);
+           response.addObject("orders", orders);
+           }
 
         return response;
     }
 
+
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @GetMapping("/index/{userId}")
+    public ModelAndView index(@PathVariable("userId") Integer userId) {
+        ModelAndView response = new ModelAndView("user/detail");
+        User user = userDAO.findUserByUserId(userId);
+        if (user == null) {
+            response.setViewName("redirect:/user/list");
+        }else{
+            List<Order> orders = orderDAO.findOrdersByUserAndCheckoutStatus(user);
+            response.addObject("user", user);
+            response.addObject("orders", orders);
+
+        }
+        return response;
+    }
+
+
+
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @GetMapping("/list")
     public ModelAndView list() {
         ModelAndView response = new ModelAndView("user/list");

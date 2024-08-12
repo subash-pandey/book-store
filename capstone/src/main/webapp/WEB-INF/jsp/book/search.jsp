@@ -45,6 +45,7 @@
                         <th>Author</th>
                         <th>Publisher</th>
                         <th>Availability</th>
+                        <th>Add to cart</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,6 +63,16 @@
                                     </c:when>
                                     <c:otherwise>
                                         <span style="color: red;">Out of Stock</span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${book.stock > 0}">
+                                        <a href="/book/index/${book.bookId}" class="btn btn-outline-primary btn-sm">Add to Cart</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="text-muted">Unavailable</span>
                                     </c:otherwise>
                                 </c:choose>
                             </td>
