@@ -76,7 +76,7 @@ public class CartController {
 
         }
         catch(RuntimeException e){
-            response.setViewName("redirect:/book/list");
+            response.setViewName("redirect:/book/list.jsp");
         }
 
         return response;

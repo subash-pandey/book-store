@@ -9,6 +9,7 @@ import org.subash.capstone.database.entity.User;
 import java.util.List;
 
 public interface OrderDAO extends JpaRepository<Order, Long> {
+    Order findByOrderId(Integer orderId);
     Order findByOrderStatusAndUser(String orderStatus, User user);
 
     @Query("Select o from Order  o where o.user =:user and o.orderStatus ='CHECKOUT'")

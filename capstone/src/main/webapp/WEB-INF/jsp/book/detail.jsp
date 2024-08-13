@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <jsp:include page="../include/header.jsp"></jsp:include>
 
@@ -48,11 +49,21 @@
     </div>
 </section>
 
+
 <!-- Search for More Books Section -->
 <section style="background-color: #fff;">
     <div class="container text-center my-5">
         <h4><a href="/book/search" class="btn btn-outline-secondary btn-lg px-4 mt-3"
                style="border-radius: 3px;">Search for more</a></h4>
+    </div>
+    <div>
+        <sec:authorize access="isAuthenticated()">
+            <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                <div class="nav-item">
+                    <a class="nav-link" href="/book/edit/${book.bookId}">Edit</a>
+                </div>
+            </sec:authorize>
+        </sec:authorize>
     </div>
 </section>
 

@@ -61,7 +61,7 @@ public class UserController {
         ModelAndView response = new ModelAndView("user/detail");
         User user = userDAO.findUserByUserId(userId);
         if (user == null) {
-            response.setViewName("redirect:/user/list");
+            response.setViewName("redirect:/user/list.jsp");
         }else{
             List<Order> orders = orderDAO.findOrdersByUserAndCheckoutStatus(user);
             response.addObject("user", user);

@@ -15,6 +15,7 @@ import org.subash.capstone.database.entity.Book;
 import org.subash.capstone.database.entity.User;
 import org.subash.capstone.form.CreateBookFormBean;
 import org.subash.capstone.form.CreateUserFormBean;
+import org.subash.capstone.security.AuthenticatedUserUtilities;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -29,9 +30,14 @@ public class BookController {
     @Autowired
     private BookDAO   bookDAO;
 
+    @Autowired
+     private AuthenticatedUserUtilities authenticatedUserUtilities;
+
     @GetMapping("/index/{id}")
     public ModelAndView indexPathVar(@PathVariable Integer id) {
         ModelAndView response = new ModelAndView("book/detail");
+        User user = authenticatedUserUtilities.getCurrentUser();
+        response.addObject("user", user);
         Book book  = bookDAO.findBookByBookId(id);
         response.addObject("book",book );
 

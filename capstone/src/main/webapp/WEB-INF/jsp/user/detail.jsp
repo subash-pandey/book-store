@@ -56,7 +56,7 @@
                             <td>${order.orderId}</td>
                             <td>${order.orderDate}</td>
                             <td>${order.totalAmount}$</td>
-                            <td><a href="#" class="btn btn-outline-primary btn-sm">View</a></td>
+                            <td><a href="/orderDetail/list/${order.orderId}" class="btn btn-outline-primary btn-sm">View</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
