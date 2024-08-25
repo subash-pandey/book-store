@@ -101,11 +101,12 @@ public class CartController {
         ModelAndView response = new ModelAndView();
         try {
             cartService.checkout(form);
+            response.setViewName("redirect:/user/detail");
 
         } catch (RuntimeException e) {
             response.setViewName("redirect:/cart/view");
         }
-        response.setViewName("redirect:/cart/view");
+        response.setViewName("redirect:/");
         return response;
     }
 
