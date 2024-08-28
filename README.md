@@ -23,8 +23,7 @@ A Spring Boot-based application for an online bookstore, featuring user roles, s
 - Spring Boot 3.x
 - Spring Security
 - Spring Data JPA
-- H2 Database (for testing)
-- MySQL/PostgreSQL (for production)
+- MySQL (for production)
 - JSP, JavaScript and CSS for frontend
 - Maven
 
