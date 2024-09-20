@@ -1,4 +1,4 @@
-# Bookstore Application
+# Online Bookstore 
 
 A Spring Boot-based application for an online bookstore, featuring user roles, secure authentication, book management, and order processing.
 
