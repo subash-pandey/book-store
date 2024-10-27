@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4dead46e-43b5-4dc4-bdf1-c8a58e2dfde1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/CurrencyConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlappyBird.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PrimeNumbers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Solution.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2lZFbqHFeGCseLPDnAkk8epmZdq" />
+  <component name="ProjectViewState">
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CurrencyConverter.executor": "Run",
+    "Application.Demo.executor": "Run",
+    "Application.DiscountSystem.executor": "Run",
+    "Application.FlappyBird.executor": "Run",
+    "Application.LinkedList.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Palindrome.executor": "Run",
+    "Application.PrimeNumbers.executor": "Run",
+    "Application.ProducerConsumer.executor": "Run",
+    "Application.Solution.executor": "Run",
+    "Application.TaskScheduler.executor": "Run",
+    "Application.Test.executor": "Run",
+    "Application.UndoRedoSystem.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4dead46e-43b5-4dc4-bdf1-c8a58e2dfde1" name="Changes" comment="" />
+      <created>1725379766486</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1725379766486</updated>
+      <workItem from="1725379767776" duration="2629000" />
+      <workItem from="1728043314227" duration="1542000" />
+      <workItem from="1728136181674" duration="1202000" />
+      <workItem from="1728921780479" duration="30392000" />
+      <workItem from="1729549343959" duration="598000" />
+      <workItem from="1729607946098" duration="7873000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
