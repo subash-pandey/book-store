@@ -4,36 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dead46e-43b5-4dc4-bdf1-c8a58e2dfde1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutoboxingUnboxingExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CelsiusToFahrenheit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CheckingErrors.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CryptographicHash.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CurrencyConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DistinctByProperty.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Factorial.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FactoryPattern.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlappyBird.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GaleShapelyModified.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HelloWorldGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MacAddress.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MineCraft.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Observer_Pattern.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PrimeNumbers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ReentrantLockExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ShiftedSortedArray.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SlackCLone.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SomeCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TcpProxyServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TextEditor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WordSplitter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mountain_range_generator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RevatureTeest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/justSomeCodes.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Solution.java" beforeDir="false" />
-    </list>
+    <list default="true" id="4dead46e-43b5-4dc4-bdf1-c8a58e2dfde1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,7 +116,7 @@
       <workItem from="1728921780479" duration="30392000" />
       <workItem from="1729549343959" duration="598000" />
       <workItem from="1729607946098" duration="7873000" />
-      <workItem from="1729700296703" duration="38659000" />
+      <workItem from="1729700296703" duration="41834000" />
     </task>
     <servers />
   </component>
