@@ -55,5 +55,5 @@ This project is licensed under the GNU General License
 Contributions to the main branch are not accepted. However, you are welcome to make changes and submit pull requests on other branches or versions of the project.
 
 ## Contact
-Subash Pandey - https://www.linkedin.com/in/subashpandey/
+Subash Pandey - https://www.linkedin.com/in/subash1pandey/
 Project Link: https://github.com/subash-pandey/book-store
